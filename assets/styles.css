@@ -2,3 +2,4 @@
 .scroll-cue{position:relative;display:block;width:1.5px;height:52px;border-radius:2px;background:rgba(255,255,255,.16);overflow:hidden}.scroll-cue::after{content:"";position:absolute;left:0;top:0;width:100%;height:45%;border-radius:2px;background:linear-gradient(to bottom,rgba(212,146,47,0),#d4922f);animation:scrollCue 1.9s cubic-bezier(.45,0,.2,1) infinite}@keyframes scrollCue{0%{transform:translateY(-110%)}100%{transform:translateY(240%)}}@media (prefers-reduced-motion:reduce){.scroll-cue::after{animation:none;transform:translateY(60%)}}
 
 #hero h1{overflow-wrap:break-word}@media (max-width:430px){#hero h1{font-size:2.2rem;line-height:1.03}}
+@media (min-width:768px){#hero h1{white-space:nowrap}}

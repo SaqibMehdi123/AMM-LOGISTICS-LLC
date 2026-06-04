@@ -79,6 +79,12 @@ body {
     line-height: 1.03;
   }
 }
+/* On desktop there's room — keep the headline on a single line */
+@media (min-width: 768px) {
+  #hero h1 {
+    white-space: nowrap;
+  }
+}
 
 /* Animated scroll cue — a brass pulse travelling down a thin track */
 .scroll-cue {

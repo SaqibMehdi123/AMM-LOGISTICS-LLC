@@ -68,6 +68,18 @@ body {
     linear-gradient(95deg, rgba(16, 18, 22, 0.8) 0%, rgba(16, 18, 22, 0.25) 55%, rgba(16, 18, 22, 0) 100%);
 }
 
+/* Keep the hero headline from clipping on narrow phones — let it wrap, and
+   reduce its size a touch on small screens for a clean two-line break. */
+#hero h1 {
+  overflow-wrap: break-word;
+}
+@media (max-width: 430px) {
+  #hero h1 {
+    font-size: 2.2rem;
+    line-height: 1.03;
+  }
+}
+
 /* Animated scroll cue — a brass pulse travelling down a thin track */
 .scroll-cue {
   position: relative;

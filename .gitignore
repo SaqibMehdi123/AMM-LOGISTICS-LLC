@@ -1,0 +1,6 @@
+node_modules/
+*.exe
+_shot_*.png
+_full.html
+npm-debug.log*
+.DS_Store

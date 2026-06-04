@@ -1,0 +1,184 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+body {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+::selection {
+  background: #d4922f;
+  color: #fff;
+}
+
+.kicker {
+  font-family: "JetBrains Mono", ui-monospace, monospace;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+}
+.tnegtrack {
+  letter-spacing: -0.02em;
+}
+
+/* Frosted glass navbar / panels */
+.glass {
+  background: rgba(247, 246, 243, 0.72);
+  backdrop-filter: saturate(180%) blur(18px);
+  -webkit-backdrop-filter: saturate(180%) blur(18px);
+  box-shadow:
+    0 1px 0 rgba(255, 255, 255, 0.55) inset,
+    0 10px 34px -12px rgba(22, 24, 29, 0.3);
+}
+.glass::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0) 42%);
+  pointer-events: none;
+}
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+  .glass { background: rgba(247, 246, 243, 0.95); }
+}
+
+/* Sliding active-pill indicator */
+#nav-pill {
+  transition:
+    transform 0.42s cubic-bezier(0.4, 0.01, 0.2, 1),
+    width 0.42s cubic-bezier(0.4, 0.01, 0.2, 1),
+    opacity 0.25s ease;
+  will-change: transform, width;
+}
+
+/* Hero photo fallback treatment (shown if the image is missing) */
+.hero-photo {
+  background-color: #16181d;
+  background-image:
+    radial-gradient(120% 90% at 75% 18%, rgba(212, 146, 47, 0.3), rgba(212, 146, 47, 0) 55%),
+    radial-gradient(140% 120% at 12% 100%, rgba(36, 40, 49, 0.9), rgba(22, 24, 29, 0) 60%),
+    linear-gradient(180deg, #20242c 0%, #181b21 48%, #101216 100%),
+    repeating-linear-gradient(115deg, rgba(255, 255, 255, 0.022) 0 2px, rgba(255, 255, 255, 0) 2px 9px);
+}
+.hero-scrim {
+  background:
+    linear-gradient(180deg, rgba(16, 18, 22, 0.55) 0%, rgba(16, 18, 22, 0.18) 30%, rgba(16, 18, 22, 0.45) 70%, rgba(16, 18, 22, 0.9) 100%),
+    linear-gradient(95deg, rgba(16, 18, 22, 0.8) 0%, rgba(16, 18, 22, 0.25) 55%, rgba(16, 18, 22, 0) 100%);
+}
+
+/* Animated scroll cue — a brass pulse travelling down a thin track */
+.scroll-cue {
+  position: relative;
+  display: block;
+  width: 1.5px;
+  height: 52px;
+  border-radius: 2px;
+  background: rgba(255, 255, 255, 0.16);
+  overflow: hidden;
+}
+.scroll-cue::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 45%;
+  border-radius: 2px;
+  background: linear-gradient(to bottom, rgba(212, 146, 47, 0), #d4922f);
+  animation: scrollCue 1.9s cubic-bezier(0.45, 0, 0.2, 1) infinite;
+}
+@keyframes scrollCue {
+  0% { transform: translateY(-110%); }
+  100% { transform: translateY(240%); }
+}
+
+/* Section reveal on scroll */
+.reveal {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+.card-lift {
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1), box-shadow 0.35s ease, border-color 0.35s ease;
+}
+.card-lift:hover {
+  transform: translateY(-6px);
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid #16181d;
+  outline-offset: 3px;
+  border-radius: 10px;
+}
+.on-dark a:focus-visible,
+.on-dark button:focus-visible {
+  outline-color: #d4922f;
+}
+
+/* Legal pages (privacy / terms) */
+.legal h2 {
+  font-family: Sora, sans-serif;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: #16181d;
+  font-size: 1.3rem;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+}
+.legal p,
+.legal li {
+  color: #5c606a;
+  line-height: 1.75;
+  font-size: 1rem;
+}
+.legal p {
+  margin-bottom: 1rem;
+}
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-bottom: 1rem;
+}
+.legal li {
+  margin-bottom: 0.4rem;
+}
+.legal a {
+  color: #9a6a1a;
+  font-weight: 600;
+}
+.legal a:hover {
+  color: #d4922f;
+}
+.legal strong {
+  color: #16181d;
+  font-weight: 600;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none;
+  }
+  #nav-pill {
+    transition: none;
+  }
+  .card-lift {
+    transition: none;
+  }
+  .scroll-cue::after {
+    animation: none;
+    transform: translateY(60%);
+  }
+}
